@@ -16,6 +16,10 @@ public class Player
 	public string Name { get; set; }
 	public List<Card> Hand { get; set; }
 	public List<Chip> Chips { get; set; }
+    public bool IsSmallBlind { get; set; }
+    public bool IsBigBlind { get; set; }
+    public bool IsDealer { get; set; }
+
 
 
 }

@@ -13,7 +13,7 @@ namespace Poker.Model
             GenerateDeck();
             if (Cards != null)
             {
-                ShuffleDeck(Cards);
+                ShuffleDeck();
             }
         }
 
@@ -30,17 +30,17 @@ namespace Poker.Model
             
         }
 
-        public void ShuffleDeck(IList<Card> list)
+        public void ShuffleDeck()
         {
             Random rng = new Random();
-            int n = list.Count;
+            int n = Cards.Count;
             while (n > 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                Card value = list[k];
-                list[k] = list[n];
-                list[n] = value;
+                Card value = Cards[k];
+                Cards[k] = Cards[n];
+                Cards[n] = value;
             }
         }
     }

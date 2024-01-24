@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Poker"
+        xmlns:vm="clr-namespace:Poker.ViewModel" 
+        xmlns:vw="clr-namespace:Poker.View" 
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vm:GameViewModel}">
+                <vw:GameView/>
+            </DataTemplate>
+        </Grid.Resources>
 
     </Grid>
 </Window>

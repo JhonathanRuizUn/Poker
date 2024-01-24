@@ -12,7 +12,8 @@ namespace Poker.Model
         public Deck Deck { get; set; }
         public List<Chip> Pot { get; set; }
         public List<Card> CommunityCards { get; set; }
-
+        public int SmallBlind { get; set; }
+        public int BigBlind { get; set; }
 
         public Game() { 
             StartGame();
