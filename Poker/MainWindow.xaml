@@ -17,6 +17,8 @@
                 <vw:GameView/>
             </DataTemplate>
         </Grid.Resources>
+        <Label x:Name="label" Content="Poker Game" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top" FontSize="48"/>
+        <Button x:Name="button" Content="Play" HorizontalAlignment="Center" Margin="0,194,0,0" VerticalAlignment="Top" Click="button_Click" FontSize="18" Height="51" Width="170" RenderTransformOrigin="0.943,0.577"/>
 
     </Grid>
 </Window>

@@ -1,4 +1,6 @@
 ﻿using Poker.Model;
+using Poker.View;
+using Poker.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Poker
@@ -21,9 +22,20 @@ namespace Poker
     /// </summary>
     public partial class MainWindow : Window
     {
+       
         public MainWindow()
         {
+            
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+            GameView gameView = new GameView { DataContext = new GameViewModel() };
+            gameView.Show();
+            this.Close();
+      
         }
     }
 }

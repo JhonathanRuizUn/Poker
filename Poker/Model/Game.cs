@@ -10,7 +10,7 @@ namespace Poker.Model
     {
         public List<Player> Players { get; set; }
         public Deck Deck { get; set; }
-        public List<Chip> Pot { get; set; }
+        public List<Chips> Pot { get; set; }
         public List<Card> CommunityCards { get; set; }
         public int SmallBlind { get; set; }
         public int BigBlind { get; set; }

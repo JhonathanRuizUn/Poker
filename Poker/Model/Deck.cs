@@ -43,5 +43,16 @@ namespace Poker.Model
                 Cards[n] = value;
             }
         }
+
+        public Card DrawCard()
+        {
+            if (Cards == null || Cards.Count == 0)
+            {
+                throw new InvalidOperationException("No cards left in the deck");
+            }
+            Card card = Cards.First();
+            Cards.RemoveAt(0);
+            return card;
+        }
     }
 }
