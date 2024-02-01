@@ -6,22 +6,53 @@
         xmlns:local="clr-namespace:Poker.View"
         xmlns:vm="clr-namespace:Poker.ViewModel"
         mc:Ignorable="d"
-        Title="GameView" Height="450" Width="800">
+        Title="Poker Game" Height="600" Width="800">
+
     <Window.DataContext>
         <vm:GameViewModel/>
     </Window.DataContext>
 
-    
     <Grid>
-        <ListBox ItemsSource="{Binding Players}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0" ItemsSource="{Binding Players}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+
+                        <!-- Player's Chips -->
+                        <ItemsControl ItemsSource="{Binding Chips}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Quantity}" Margin="2"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- Player's Hand -->
                         <ItemsControl ItemsSource="{Binding Hand}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding}"/>
+                                    <TextBlock Text="{Binding}" Margin="2">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <!-- Visibility based on PlayerIndex -->
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=DataContext.PlayerIndex}" Value="0">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=DataContext.PlayerIndex}" Value="1">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                    </DataTrigger>
+                                                    <!-- Add similar triggers for other players -->
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -29,5 +60,14 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <!-- Game Actions Buttons and Status -->
+        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10">
+            <Button Content="Deal" Command="{Binding DealCommand}" Margin="0,0,0,10"/>
+            <Button Content="Bet" Command="{Binding BetCommand}" Margin="0,0,0,10"/>
+            <Button Content="Fold" Command="{Binding FoldCommand}" Margin="0,0,0,10"/>
+            <!-- Add more buttons as needed for game actions -->
+            <TextBlock Text="{Binding CurrentStatus}" FontWeight="Bold" />
+        </StackPanel>
     </Grid>
 </Window>
